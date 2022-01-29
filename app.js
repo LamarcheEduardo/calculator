@@ -173,14 +173,14 @@ equal.addEventListener('click', () => {
         acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
     if(operator === myNumbers['plus']) {
             let result = add(firstNumber,secondNumber)
-            displayer.innerText = parseFloat(result.toFixed(2));
+            displayer.innerText = result;
             firstNumber.shift();
             firstNumber.push(result);
             tempArray.length = 0;
             secondNumber.length = 0;
         } else if (operator === myNumbers['minus']) {
             let result = subtract(firstNumber,secondNumber)
-            displayer.innerText = result.toFixed(2);
+            displayer.innerText = result;
             firstNumber.pop();
             firstNumber.push(result);
             tempArray.length = 0;
@@ -188,7 +188,7 @@ equal.addEventListener('click', () => {
             operator = '';
         } else if (operator === myNumbers['multiply']) {
             let result = multiply(firstNumber,secondNumber);
-            displayer.innerText = result.toFixed(2);
+            displayer.innerText = result;
             firstNumber.pop();
             firstNumber.push(result);
             tempArray.length = 0;
@@ -196,7 +196,7 @@ equal.addEventListener('click', () => {
             operator = '';
         } else if (operator === myNumbers['divide']) {
             let result = divide(firstNumber,secondNumber);
-            displayer.innerText = result.toFixed(2);
+            displayer.innerText = result;
             firstNumber.pop();
             firstNumber.push(result);
             tempArray.length = 0;
@@ -214,7 +214,7 @@ plus.addEventListener('click', () => {
         operator = myNumbers['plus'];
         acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
         let result = add(firstNumber,secondNumber)
-        displayer.innerText = parseFloat(result.toFixed(2));
+        displayer.innerText = result;
         firstNumber.push(result);
         firstNumber.pop();
         tempArray.length = 0;
@@ -236,7 +236,7 @@ minus.addEventListener('click', () => {
         operator = myNumbers['minus'];
         acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
         let result = subtract(firstNumber,secondNumber)
-        displayer.innerText = parseFloat(result.toFixed(2));
+        displayer.innerText = result;
         firstNumber.push(result);
         firstNumber.pop();
         tempArray.length = 0;
@@ -258,8 +258,8 @@ multiplier.addEventListener('click', () => {
         secondNumber.push(tempArray.toString().replace(/,/g,''));
         operator = myNumbers['multiply'];
         acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
-        let result = multiply(firstNumber,secondNumber)
-        displayer.innerText = parseFloat(result.toFixed(2));
+        let result = multiply(firstNumber,secondNumber);
+        displayer.innerText = result;
         firstNumber.push(result);
         firstNumber.pop();
         tempArray.length = 0;
@@ -281,7 +281,7 @@ divider.addEventListener('click', () => {
         operator = myNumbers['divide'];
         acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
         let result = divide(firstNumber,secondNumber)
-        displayer.innerText = parseFloat(result.toFixed(2));
+        displayer.innerText = result;
         firstNumber.push(result);
         firstNumber.pop();
         tempArray.length = 0;
