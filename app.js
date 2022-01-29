@@ -1,52 +1,97 @@
 //declare main variables SELECTORS
-    const displayer = document.querySelector('.input');
-    const acum = document.querySelector('.input-one');
-    const clear = document.querySelector('.btn-clear');
-    const dlt = document.querySelector('.btn-delete');
-    const para = document.querySelector('.input');
-    const seven = document.querySelector('.seven');
-    const eight = document.querySelector('.eight');
-    const nine = document.querySelector('.nine');
-    const four = document.querySelector('.four');
-    const five = document.querySelector('.five');
-    const six = document.querySelector('.six');
-    const one = document.querySelector('.one');
-    const two = document.querySelector('.two');
-    const three = document.querySelector('.three');
-    const plus = document.querySelector('.plus');
-
-
+const displayer = document.querySelector('.input');
+const acum = document.querySelector('.input-one');
+const clear = document.querySelector('.btn-clear');
+const dlt = document.querySelector('.btn-delete');
+const para = document.querySelector('.input');
+const seven = document.querySelector('.seven');
+const eight = document.querySelector('.eight');
+const nine = document.querySelector('.nine');
+const four = document.querySelector('.four');
+const five = document.querySelector('.five');
+const six = document.querySelector('.six');
+const one = document.querySelector('.one');
+const two = document.querySelector('.two');
+const three = document.querySelector('.three');
+const zero = document.querySelector('.zero');
+const plus = document.querySelector('.plus');
+const minus = document.querySelector('.minus');
+const multiplier = document.querySelector('.multiply');
+const divider = document.querySelector('.divide');
+const dot = document.querySelector('.dot');
+const equal = document.querySelector('.equal');
 
 
 //declare my general object.
 
 const myNumbers = {
-        one: 1,
-        two: 2,
-        three: 3,
-        four: 4,
-        five: 5,
-        six: 6,
-        seven: 7,
-        eight: 8,
-        nine: 9,
-        zero: 0,
-        plus: '+',
-        minus: '-',
-        multiplier: '*',
-        divide: '÷',
-        dot: '.'
-    }
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+    zero: 0,
+    plus: '+',
+    minus: '-',
+    multiply: 'x',
+    divide: '÷',
+    dot: '.'
+}
 
-    const finalResult = [];
+const firstNumber = [];
+let operator = '';
+const secondNumber = [];
+const tempArray = [];
+
+/* BASIC MATH OPERATIONS FUNCTION */
+
+//THE MATH
+
+//SUM CALCULATION
+
+const add = (firstNumber, secondNumber) => {
+return parseFloat(firstNumber) + parseFloat(secondNumber);
+};
+
+//SUBTRACT CALCULATION 
+
+const subtract = (firstNumber, secondNumber) => {
+return parseFloat(firstNumber) - parseFloat(secondNumber);
+};
+  
+//MULTIPLY CALCULATION
+
+const multiply = (firstNumber, secondNumber) => {
+return parseFloat(firstNumber) * parseFloat(secondNumber);
+};
+
+
+//DIVIDE CALCULATION
+
+const divide = (firstNumber, secondNumber) => {
+return parseFloat(firstNumber) / parseFloat(secondNumber);
+};
+
+
+/* MAIN BUTTONS */
 
 //CLEAR BUTTON EVENT LISTENER
 const clearScreen = () => {
-    clear.addEventListener('click', () => {
-        displayer.innerText = '';
-        acum.innerText = '';
-        finalResult.length = 0;
-    });
+clear.addEventListener('click', () => {
+   let confirmation = confirm('Are you sure you want to delete?');
+    if(confirmation === true) {
+    displayer.innerText = '0';
+    acum.innerText = '';
+    firstNumber.length = 0;
+    secondNumber.length = 0; 
+    operator = '';
+    tempArray.length = 0;
+    }
+});
 };
 
 clearScreen();
@@ -54,128 +99,214 @@ clearScreen();
 //DELETE BUTTON EVENT LISTENER
 
 const deleteSpace = () => {
-    dlt.addEventListener('click', () => {
-        finalResult.pop();
-        displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
+dlt.addEventListener('click', () => {
+    tempArray.pop();
+    displayer.innerText = firstNumber.join('');
+});
 };
+
 deleteSpace();
 
 
-//NUMBER 7 EVENT LISTENER
+//CLICK EVENT LISTENERS
 
-const sevenNum = () => {
-    seven.addEventListener('click', () => {
-       finalResult.push(myNumbers['seven']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
+const myEventListeners = () => {
 
-sevenNum();
+seven.addEventListener('click', () => {
+    tempArray.push(myNumbers['seven']);
+    displayer.innerText = tempArray.join('');
+});
 
+eight.addEventListener('click', () => {
+    tempArray.push(myNumbers['eight']);
+    displayer.innerText = tempArray.join('');
+});
 
-//NUMBER 8 EVENT LISTENER
-const eightNum = () => {
-    eight.addEventListener('click', () => {
-       finalResult.push(myNumbers['eight']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
+nine.addEventListener('click', () => {
+    tempArray.push(myNumbers['nine']);
+    displayer.innerText = tempArray.join('');
+});
 
-eightNum();
+four.addEventListener('click', () => {
+    tempArray.push(myNumbers['four']);
+    displayer.innerText = tempArray.join('');
+});
 
-//NUMBER 9 EVENT LISTENER
+five.addEventListener('click', () => {
+    tempArray.push(myNumbers['five']);
+    displayer.innerText = tempArray.join('');
+});
 
-const nineNum = () => {
-    nine.addEventListener('click', () => {
-       finalResult.push(myNumbers['nine']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
+six.addEventListener('click', () => {
+    tempArray.push(myNumbers['six']);
+    displayer.innerText = tempArray.join('');
+});
 
-nineNum();
+one.addEventListener('click', () => {
+    tempArray.push(myNumbers['one']);
+    displayer.innerText = tempArray.join('');
+});
 
+two.addEventListener('click', () => {
+    tempArray.push(myNumbers['two']);
+    displayer.innerText = tempArray.join('');
+});
 
-//NUMBER 4 EVENT LISTENER
-const fourNum = () => {
-    four.addEventListener('click', () => {
-       finalResult.push(myNumbers['four']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
+three.addEventListener('click', () => {
+    tempArray.push(myNumbers['three']);
+    displayer.innerText = tempArray.join('');
+});
 
-fourNum();
+zero.addEventListener('click', () => {
+    tempArray.push(myNumbers['zero']);
+    displayer.innerText = tempArray.join('');
+});
 
-//NUMBER 5 EVENT LISTENER
-const fiveNum = () => {
-    five.addEventListener('click', () => {
-       finalResult.push(myNumbers['five']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
+dot.addEventListener('click', () => {
+    tempArray.push(myNumbers['dot']);
+    displayer.innerText = tempArray.join('');
+})
 
-fiveNum();
+equal.addEventListener('click', () => {
+    if(firstNumber.length > 0) {
+        secondNumber.push(tempArray.join(''));
+        acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
+        if(operator === myNumbers['plus']) {
+            let result = add(firstNumber,secondNumber)
+            displayer.innerText = result.toFixed(2);
+            firstNumber.pop();
+            firstNumber.push(result);
+            tempArray.length = 0;
+            secondNumber.length = 0;
+            operator = '';
+        } else if (operator === myNumbers['minus']) {
+            alert('Hola Gaby');
+            let result = subtract(firstNumber,secondNumber)
+            displayer.innerText = result.toFixed(2);
+            firstNumber.pop();
+            firstNumber.push(result);
+            tempArray.length = 0;
+            secondNumber.length = 0;
+            operator = '';
+        } else if (operator === myNumbers['multiply']) {
+            let result = multiply(firstNumber,secondNumber);
+            displayer.innerText = result.toFixed(2);
+            firstNumber.pop();
+            firstNumber.push(result);
+            tempArray.length = 0;
+            secondNumber.length = 0;
+            operator = '';
+        } else if (operator === myNumbers['divide']) {
+            let result = divide(firstNumber,secondNumber);
+            displayer.innerText = result.toFixed(2);
+            firstNumber.pop();
+            firstNumber.push(result);
+            tempArray.length = 0;
+            secondNumber.length = 0;
+            operator = '';
+        }
+    }
+})
 
-//NUMBER SIX EVENT LISTENER
+/* OPERATORS */
 
-const sixNum = () => {
-    six.addEventListener('click', () => {
-       finalResult.push(myNumbers['six']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
+// firstNumber.pop();
 
-sixNum();
+//KEYDOWN EVENT LISTENER 
+plus.addEventListener('click', () => {
+        if(firstNumber.length > 0) {
+            secondNumber.push(tempArray.toString().replace(/,/g,''));
+            operator = myNumbers['plus'];
+            acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
+            let result = add(firstNumber,secondNumber)
+            displayer.innerText = parseFloat(result.toFixed(2));
+            firstNumber.shift();
+            firstNumber.push(result);
+            tempArray.length = 0;
+            secondNumber.length = 0;
+    
+        } 
+        else {
+            firstNumber.push(tempArray.toString().replace(/,/g,""));
+            tempArray.length = 0;
+            operator = myNumbers['plus'];
+            acum.innerText = `${firstNumber} ${operator}`
+            displayer.innerText = '0';
+        }
+ 
+});
 
-//NUMBER ONE EVENT LISTENER
+minus.addEventListener('click', () => {
+    //DEBE EXISTIR ALGO QUE IMPIDA QUE UTILIZA OTRO OPERADOR.
+    
+            if(firstNumber.length > 0) {
+                
+                secondNumber.push(tempArray.toString().replace(/,/g,''));
+                operator = myNumbers['minus'];
+                acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
+                let result = subtract(firstNumber,secondNumber)
+                displayer.innerText = parseFloat(result.toFixed(2));
+                firstNumber.push(result);
+                firstNumber.pop();
+                tempArray.length = 0;
+                secondNumber.length = 0;
+    
+            } 
+            else {
+                firstNumber.push(tempArray.toString().replace(/,/g,""));
+                tempArray.length = 0;
+                operator = myNumbers['minus'];
+                acum.innerText = `${firstNumber} ${operator}`
+                displayer.innerText = '0';
+            }
+ 
+});
 
-const oneNum = () => {
-    one.addEventListener('click', () => {
-       finalResult.push(myNumbers['one']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
+multiplier.addEventListener('click', () => {
+//DEBE EXISTIR ALGO QUE IMPIDA QUE UTILIZA OTRO OPERADOR.
 
-oneNum();
+    if(firstNumber.length > 0) {
+        
+        secondNumber.push(tempArray.toString().replace(/,/g,''));
+        operator = myNumbers['multiply'];
+        acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
+        let result = multiply(firstNumber,secondNumber)
+        displayer.innerText = parseFloat(result.toFixed(2));
+        firstNumber.push(result);
+        firstNumber.pop();
+        tempArray.length = 0;
+        secondNumber.length = 0;
 
-//NUMBER TWO EVENT LISTENER
+    } 
+    else {
+        firstNumber.push(tempArray.toString().replace(/,/g,""));
+        tempArray.length = 0;
+        operator = myNumbers['multiply'];
+        acum.innerText = `${firstNumber} ${operator}`
+        displayer.innerText = '0';
+    }
+});
 
-const twoNum = () => {
-    two.addEventListener('click', () => {
-       finalResult.push(myNumbers['two']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
+divider.addEventListener('click', () => {
+        if(firstNumber.length > 0) {
+            secondNumber.push(tempArray.toString().replace(/,/g,''));
+            operator = myNumbers['divide'];
+            acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
+            let result = divide(firstNumber,secondNumber)
+            displayer.innerText = parseFloat(result.toFixed(2));
+            firstNumber.push(result);
+            firstNumber.pop();
+            tempArray.length = 0;
+            secondNumber.length = 0;
+        } 
+        else {
+            firstNumber.push(tempArray.toString().replace(/,/g,""));
+            tempArray.length = 0;
+            operator = myNumbers['divide'];
+            acum.innerText = `${firstNumber} ${operator}`
+            displayer.innerText = '0';
+        }
+});
+};
 
-twoNum();
-//NUMBER THREE EVENT LISTENER
-
-const threeNum = () => {
-    three.addEventListener('click', () => {
-       finalResult.push(myNumbers['three']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
-
-threeNum();
-
-// SUM EVENT LISTENER
-const plusOperator = () => {
-    plus.addEventListener('click', () => {
-       finalResult.push(myNumbers['plus']);
-       displayer.innerText = finalResult.toString().replace(/,/g,"");
-    });
-}
-
-
-plusOperator();
-
-
-
-
-// const check = () => {
-//     const para = document.querySelector('.input')
-  
-
-
-// }
+myEventListeners();
