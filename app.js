@@ -169,18 +169,16 @@ dot.addEventListener('click', () => {
 
 equal.addEventListener('click', () => {
     if(firstNumber.length > 0) {
-        secondNumber.push(tempArray.join(''));
+        secondNumber.push(tempArray.toString().replace(/,/g,''));
         acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
-        if(operator === myNumbers['plus']) {
+    if(operator === myNumbers['plus']) {
             let result = add(firstNumber,secondNumber)
-            displayer.innerText = result.toFixed(2);
-            firstNumber.pop();
+            displayer.innerText = parseFloat(result.toFixed(2));
+            firstNumber.shift();
             firstNumber.push(result);
             tempArray.length = 0;
             secondNumber.length = 0;
-            operator = '';
         } else if (operator === myNumbers['minus']) {
-            alert('Hola Gaby');
             let result = subtract(firstNumber,secondNumber)
             displayer.innerText = result.toFixed(2);
             firstNumber.pop();
@@ -206,65 +204,55 @@ equal.addEventListener('click', () => {
             operator = '';
         }
     }
-})
+});
 
 /* OPERATORS */
 
-// firstNumber.pop();
-
-//KEYDOWN EVENT LISTENER 
 plus.addEventListener('click', () => {
-        if(firstNumber.length > 0) {
-            secondNumber.push(tempArray.toString().replace(/,/g,''));
-            operator = myNumbers['plus'];
-            acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
-            let result = add(firstNumber,secondNumber)
-            displayer.innerText = parseFloat(result.toFixed(2));
-            firstNumber.shift();
-            firstNumber.push(result);
-            tempArray.length = 0;
-            secondNumber.length = 0;
-    
-        } 
-        else {
-            firstNumber.push(tempArray.toString().replace(/,/g,""));
-            tempArray.length = 0;
-            operator = myNumbers['plus'];
-            acum.innerText = `${firstNumber} ${operator}`
-            displayer.innerText = '0';
-        }
- 
+    if(firstNumber.length > 0) {
+        secondNumber.push(tempArray.toString().replace(/,/g,''));
+        operator = myNumbers['plus'];
+        acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
+        let result = add(firstNumber,secondNumber)
+        displayer.innerText = parseFloat(result.toFixed(2));
+        firstNumber.push(result);
+        firstNumber.pop();
+        tempArray.length = 0;
+        secondNumber.length = 0;
+
+    } 
+    else {
+        firstNumber.push(tempArray.toString().replace(/,/g,""));
+        tempArray.length = 0;
+        operator = myNumbers['plus'];
+        acum.innerText = `${firstNumber} ${operator}`
+        displayer.innerText = '0';
+    }
 });
 
 minus.addEventListener('click', () => {
-    //DEBE EXISTIR ALGO QUE IMPIDA QUE UTILIZA OTRO OPERADOR.
-    
-            if(firstNumber.length > 0) {
-                
-                secondNumber.push(tempArray.toString().replace(/,/g,''));
-                operator = myNumbers['minus'];
-                acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
-                let result = subtract(firstNumber,secondNumber)
-                displayer.innerText = parseFloat(result.toFixed(2));
-                firstNumber.push(result);
-                firstNumber.pop();
-                tempArray.length = 0;
-                secondNumber.length = 0;
-    
-            } 
-            else {
-                firstNumber.push(tempArray.toString().replace(/,/g,""));
-                tempArray.length = 0;
-                operator = myNumbers['minus'];
-                acum.innerText = `${firstNumber} ${operator}`
-                displayer.innerText = '0';
-            }
- 
+    if(firstNumber.length > 0) {   
+        secondNumber.push(tempArray.toString().replace(/,/g,''));
+        operator = myNumbers['minus'];
+        acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
+        let result = subtract(firstNumber,secondNumber)
+        displayer.innerText = parseFloat(result.toFixed(2));
+        firstNumber.push(result);
+        firstNumber.pop();
+        tempArray.length = 0;
+        secondNumber.length = 0;
+
+    } 
+    else {
+        firstNumber.push(tempArray.toString().replace(/,/g,""));
+        tempArray.length = 0;
+        operator = myNumbers['minus'];
+        acum.innerText = `${firstNumber} ${operator}`
+        displayer.innerText = '0';
+    }
 });
 
 multiplier.addEventListener('click', () => {
-//DEBE EXISTIR ALGO QUE IMPIDA QUE UTILIZA OTRO OPERADOR.
-
     if(firstNumber.length > 0) {
         
         secondNumber.push(tempArray.toString().replace(/,/g,''));
@@ -288,25 +276,27 @@ multiplier.addEventListener('click', () => {
 });
 
 divider.addEventListener('click', () => {
-        if(firstNumber.length > 0) {
-            secondNumber.push(tempArray.toString().replace(/,/g,''));
-            operator = myNumbers['divide'];
-            acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
-            let result = divide(firstNumber,secondNumber)
-            displayer.innerText = parseFloat(result.toFixed(2));
-            firstNumber.push(result);
-            firstNumber.pop();
-            tempArray.length = 0;
-            secondNumber.length = 0;
-        } 
-        else {
-            firstNumber.push(tempArray.toString().replace(/,/g,""));
-            tempArray.length = 0;
-            operator = myNumbers['divide'];
-            acum.innerText = `${firstNumber} ${operator}`
-            displayer.innerText = '0';
-        }
+    if(firstNumber.length > 0) { 
+        secondNumber.push(tempArray.toString().replace(/,/g,''));
+        operator = myNumbers['divide'];
+        acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
+        let result = divide(firstNumber,secondNumber)
+        displayer.innerText = parseFloat(result.toFixed(2));
+        firstNumber.push(result);
+        firstNumber.pop();
+        tempArray.length = 0;
+        secondNumber.length = 0;
+
+    } 
+    else {
+        firstNumber.push(tempArray.toString().replace(/,/g,""));
+        tempArray.length = 0;
+        operator = myNumbers['divide'];
+        acum.innerText = `${firstNumber} ${operator}`
+        displayer.innerText = '0';
+    }
 });
+
 };
 
 myEventListeners();
