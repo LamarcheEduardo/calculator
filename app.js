@@ -101,7 +101,7 @@ clearScreen();
 const deleteSpace = () => {
 dlt.addEventListener('click', () => {
     tempArray.pop();
-    displayer.innerText = firstNumber.join('');
+    displayer.innerText = tempArray.join('');
 });
 };
 
@@ -112,6 +112,9 @@ deleteSpace();
 
 const myEventListeners = () => {
 
+    if(displayer.innerText === NaN) {
+        return displayer.innerText === '';
+    };
 seven.addEventListener('click', () => {
     tempArray.push(myNumbers['seven']);
     displayer.innerText = tempArray.join('');
@@ -168,6 +171,9 @@ dot.addEventListener('click', () => {
 })
 
 equal.addEventListener('click', () => {
+    if(displayer.innerText == NaN) {
+        return displayer.innerText === '';
+    };
     if(firstNumber.length > 0) {
         secondNumber.push(tempArray.toString().replace(/,/g,''));
         acum.innerText = `${firstNumber}  ${operator}  ${secondNumber}`;
@@ -209,6 +215,7 @@ equal.addEventListener('click', () => {
 /* OPERATORS */
 
 plus.addEventListener('click', () => {
+
     if(firstNumber.length > 0) {
         secondNumber.push(tempArray.toString().replace(/,/g,''));
         operator = myNumbers['plus'];
